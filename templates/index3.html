@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPulse - Remote Sensing News</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* Your existing CSS remains unchanged, not touching anything here */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f2f6fa; color: #333; }
+        header { background: linear-gradient(90deg, #003366, #005999); color: #fff; padding: 20px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        header h1 { font-size: 32px; font-weight: bold; letter-spacing: 1px; }
+        nav { background: #005999; box-shadow: 0 4px 6px rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center; position: relative; flex-wrap: wrap; }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; }
+        nav li { position: relative; }
+        nav a { color: #fff; text-decoration: none; padding: 15px 20px; display: block; font-size: 16px; transition: background 0.3s, color 0.3s; }
+        nav a:hover, .dropdown:hover > a { background: rgba(255,255,255,0.2); color: #ffeb3b; }
+        .dropdown-content { display: none; position: absolute; background: #0077cc; min-width: 250px; max-height: 300px; overflow-y: auto; box-shadow: 0 4px 6px rgba(0,0,0,0.2); border-radius: 4px; z-index: 100; }
+        .dropdown-content a { padding: 10px 15px; color: #fff; display: block; }
+        .dropdown-content a:hover { background: #0099ff; color: #ffeb3b; }
+        .dropdown:hover .dropdown-content { display: block; }
+        .main-content { display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 30px auto; gap: 20px; }
+        .news-section { flex: 1 1 68%; background: #cfe3ff; padding: 20px; border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .news-section h2 { color: #003366; margin-bottom: 20px; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .news-block { background: #003366; padding: 15px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); color: #fff; transition: all 0.3s ease; }
+        .news-block h2 { font-size: 18px; color: #fff; margin-bottom: 8px; }
+        .news-block p { font-size: 14px; color: #ddd; }
+        .news-block a { display: inline-block; margin-top: 8px; color: #4db8ff; text-decoration: none; font-size: 14px; }
+        .news-block a:hover { text-decoration: underline; }
+        .news-block:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
+        .live-news-section { flex: 1 1 28%; background: #003366; padding: 15px; border-radius: 10px; color: #fff; display: flex; flex-direction: column; height: 400px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        .live-news-header { background: #28a5d6; color: #fff; padding: 10px; font-size: 18px; font-weight: bold; border-radius: 4px; text-align: center; margin-bottom: 10px; }
+        .live-news-content { flex: 1; overflow: hidden; position: relative; background: #004080; border-radius: 4px; }
+        .live-news-list { position: absolute; animation: scrollNews 25s linear infinite; }
+        .live-news-item { padding: 10px; border-bottom: 1px solid #002244; font-size: 14px; color: #fff; }
+        .live-news-item strong { color: #ffeb3b; margin-right: 5px; }
+        .live-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        #pauseBtn { background: #002244; color: #fff; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+        #pauseBtn:hover { background: #001122; }
+        .view-all a { background: #0077cc; color: #fff; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background 0.3s; }
+        .view-all a:hover { background: #005999; }
+        @keyframes scrollNews { 0% { top: 0; } 100% { top: -100%; } }
+        footer { background: #003366; color: #fff; text-align: center; padding: 15px; margin-top: 30px; font-size: 14px; border-top: 2px solid #005999; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+        #allNewsModal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        .modal-content { background-color: white; padding: 20px; border-radius: 8px; max-width: 600px; width: 90%; max-height: 400px; overflow-y: auto; box-shadow: 0 6px 20px rgba(0,0,0,0.4); position: relative; }
+        .modal-content h2 { margin-bottom: 15px; color: #003366; text-align: center; }
+        .modal-content ul { list-style: none; padding: 0; }
+        .modal-content li { padding: 8px 0; border-bottom: 1px solid #ddd; font-size: 14px; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; font-weight: bold; color: #003366; cursor: pointer; }
+        .close-btn:hover { color: red; }
+        @media (max-width: 768px) { .news-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1><i class="fas fa-globe" style="background: linear-gradient(45deg, #008000, #006400); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i> GeoPulse - News</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#"><i class="fas fa-home" style="color: #ff69b4;"></i> Home</a></li>
+        <li><a href="/about"><i class="fas fa-info-circle" style="color: #ff8c00;"></i> About</a></li>
+        <li><a href="/international"><i class="fas fa-globe" style="color: #00ced1;"></i> International</a></li>
+        <li><a href="/national"><i class="fas fa-flag" style="color: #ffa500;"></i> National</a></li>
+        <li><a href="/environment"><i class="fas fa-leaf" style="color: #32cd32;"></i> Environment</a></li>
+        <li><a href="/technology"><i class="fas fa-microchip" style="color: #1e90ff;"></i> Technology</a></li>
+        <li><a href="/contact"><i class="fas fa-envelope" style="color: #dc143c;"></i> Contact</a></li>
+    </ul>
+</nav>
+
+<div class="main-content">
+    <div class="news-section">
+        <h2><i class="fas fa-newspaper" style="color: #e91e63;"></i> News Highlights</h2>
+        <div class="news-grid">
+            {% for item in news[:6] %}
+            <div class="news-block">
+                <h2>
+                  <i class="fas fa-arrow-right" style="color: greenyellow; margin-right: 5px;"></i>
+                     {{ item[0] }}
+                </h2>
+                <p>{{ item[1] }}</p>
+                <a href="/news/{{ item[2] }}">Read More</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="live-news-section">
+        <div class="live-news-header">🔴 Live News Updates</div>
+        <div class="live-news-content" id="liveNews">
+            <div class="live-news-list" id="newsList">
+                {% for item in news %}
+                <div class="live-news-item"><strong>{{ item[1] }}</strong> {{ item[0] }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="live-controls">
+            <button id="pauseBtn">❚❚</button>
+            <div class="view-all">
+                <a href="#" id="viewAllBtn">View All</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 GeoPulse. All Rights Reserved. Powered by Remote Sensing Technology.
+    <div style="margin-top: 10px;">
+        <a href="https://instagram.com/geopulse" target="_blank" style="color:#e1306c; margin: 0 10px;">
+            <i class="fab fa-instagram fa-lg"></i>
+        </a>
+        <a href="https://twitter.com/geopulse" target="_blank" style="color:#1da1f2; margin: 0 10px;">
+            <i class="fab fa-twitter fa-lg"></i>
+        </a>
+        <a href="mailto:contact@geopulse.in" style="color:#ffffff; margin: 0 10px;">
+            <i class="fas fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://linkedin.com/company/geopulse" target="_blank" style="color:#0077b5; margin: 0 10px;">
+            <i class="fab fa-linkedin fa-lg"></i>
+        </a>
+        <a href="https://youtube.com/@geopulse" target="_blank" style="color:#ff0000; margin: 0 10px;">
+            <i class="fab fa-youtube fa-lg"></i>
+        </a>
+    </div>
+</footer>
+
+
+<div id="allNewsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <h2>All News</h2>
+        <ul>
+            {% for item in news %}
+            <li>{{ item[1] }} - {{ item[0] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script>
+const newsList = document.getElementById('newsList');
+const pauseBtn = document.getElementById('pauseBtn');
+let isPaused = false;
+pauseBtn.addEventListener('click', () => {
+  newsList.style.animationPlayState = isPaused ? 'running' : 'paused';
+  pauseBtn.textContent = isPaused ? '❚❚' : '▶';
+  isPaused = !isPaused;
+});
+const viewAllBtn = document.getElementById('viewAllBtn');
+const modal = document.getElementById('allNewsModal');
+const closeModal = document.getElementById('closeModal');
+viewAllBtn.onclick = () => modal.style.display = 'flex';
+closeModal.onclick = () => modal.style.display = 'none';
+window.onclick = e => { if (e.target == modal) modal.style.display = 'none'; }
+</script>
+
+</body>
+</html>  

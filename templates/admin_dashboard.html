@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - GeoPulse</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f2f6fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #004c99;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .dashboard {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #004c99;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #e6f0ff;
+            padding: 12px 20px;
+            margin: 10px 0;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        li:hover {
+            background: #cce0ff;
+        }
+        a {
+            color: #004c99;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .logout {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+    <div class="dashboard">
+        <h2>Edit News Categories</h2>
+        <ul>
+            <li><a href="/admin/edit/national">Edit National News</a></li>
+            <li><a href="/admin/edit/international">Edit International News</a></li>
+            <li><a href="/admin/edit/environment">Edit Environment News</a></li>
+            <li><a href="/admin/edit/technology">Edit Technology News</a></li>
+        </ul>
+        <div class="logout">
+            <a href="/admin/logout">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

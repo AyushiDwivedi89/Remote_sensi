@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit {{ category|capitalize }} News - GeoPulse Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef5ff;
+            padding: 30px;
+        }
+        h2 {
+            color: #003366;
+        }
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #004c99;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #003366;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Edit {{ category|capitalize }} News</h2>
+
+    <form method="POST">
+        <label for="title">News Title</label>
+        <input type="text" name="title" id="title" required>
+
+        <label for="date">Published Date</label>
+        <input type="text" name="date" id="date" placeholder="YYYY-MM-DD" required>
+
+        <label for="link">Link</label>
+        <input type="text" name="link" id="link" required>
+
+        <button type="submit">Add / Update News</button>
+    </form>
+
+</body>
+</html>
