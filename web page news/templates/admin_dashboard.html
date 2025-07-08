@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GeoPulse - Admin Panel</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            background: #0d47a1;
+            color: white;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background: #1565c0;
+        }
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+        }
+        .top-bar {
+            background: #eeeeee;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+        .top-bar button {
+            background: #0d47a1;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/admin/edit/news">Edit News</a>
+    <a href="/admin/add">Add News</a>
+    <a href="/admin/logout">Logout</a>
+</div>
+
+<div class="content">
+    <div class="top-bar">
+        <h1>GeoPulse - News</h1>
+        <button onclick="window.location.href='/admin/logout'">Logout</button>
+    </div>
+
+    <iframe src="/" style="width:100%; height: calc(100vh - 60px); border: none;"></iframe>
+</div>
+
+</body>
+</html>

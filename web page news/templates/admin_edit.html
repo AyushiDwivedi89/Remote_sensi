@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit News - GeoPulse</title>
+    <style>
+        body {
+            background: #e3f2fd;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+        form {
+            background: white;
+            padding: 30px;
+            width: 400px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+        }
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #0d47a1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        <h2>Edit News</h2>
+        <input type="text" name="title" value="{{ news[1] }}" required><br>
+        <input type="text" name="link" value="{{ news[2] }}" required><br>
+        <textarea name="description" required>{{ news[3] }}</textarea><br>
+        <button type="submit">Update News</button>
+    </form>
+</body>
+</html>

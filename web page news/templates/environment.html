@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Environment - GeoPulse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+            color: #2e7d32;
+        }
+
+        header {
+            background: url('https://images.unsplash.com/photo-1508780709619-79562169bc64') no-repeat center center/cover;
+            height: 200px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 100, 0, 0.5);
+        }
+
+        header h1 {
+            position: relative;
+            color: #fff;
+            font-size: 34px;
+            z-index: 2;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        nav {
+            background-color: #2e7d32;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 12px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            padding: 10px 16px;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #43a047;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #1b5e20;
+            font-size: 26px;
+            margin-bottom: 25px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background: #eafaf1;
+            border-left: 5px solid #66bb6a;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-card h3 {
+            color: #2e7d32;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .news-card p {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .news-card a {
+            color: #1b5e20;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .news-card a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><i class="fas fa-leaf"></i> Environment News</h1>
+</header>
+
+<nav>
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <a href="/about"><i class="fas fa-info-circle"></i> About</a>
+    <a href="/international"><i class="fas fa-globe"></i> International</a>
+    <a href="/national"><i class="fas fa-flag"></i> National</a>
+    <a href="/states"><i class="fas fa-map"></i> States</a>
+    <a href="/environment"><i class="fas fa-leaf"></i> Environment</a>
+    <a href="/technology"><i class="fas fa-microchip"></i> Technology</a>
+    <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+</nav>
+
+<div class="container">
+    <h2><i class="fas fa-tree"></i> Eco & Climate Highlights</h2>
+    <div class="news-grid">
+        {% for item in news %}
+        <div class="news-card">
+            <h3><i class="fas fa-seedling"></i> {{ item[0] }}</h3>
+            <p><i class="fas fa-calendar-alt"></i> {{ item[1] }}</p>
+            <a href="{{ item[2] }}" target="_blank"><i class="fas fa-arrow-circle-right"></i> Read More</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 GeoPulse. Empowering Green Awareness 🍃
+</footer>
+
+</body>
+</html>
