@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>National News - GeoPulse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #eef5ff, #d9ecff);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            box-shadow: inset 0 0 0 2000px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 42px;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            background-color: #003d7a;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 12px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 18px;
+            font-weight: bold;
+            font-size: 15px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #005bb5;
+            border-radius: 6px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.7s ease-in-out;
+        }
+
+        h2 {
+            color: #003366;
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .news-card {
+            background: linear-gradient(to bottom, #ffffff, #eaf3ff);
+            padding: 22px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 22px rgba(0,0,0,0.2);
+        }
+
+        .news-card h3 {
+            color: #002b5e;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .news-card p {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .read-btn {
+            display: inline-block;
+            background: #004c99;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .read-btn:hover {
+            background: #0071cc;
+        }
+
+        .badge-featured {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #ff5050;
+            color: white;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #003d7a;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 60px;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            color: #ffffff;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ffd700;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                margin: 6px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><i class="fas fa-flag"></i> National News Updates</h1>
+</header>
+
+<nav>
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <a href="/about"><i class="fas fa-info-circle"></i> About</a>
+    <a href="/international"><i class="fas fa-globe"></i> International</a>
+    <a href="/national"><i class="fas fa-flag"></i> National</a>
+    <a href="/environment"><i class="fas fa-leaf"></i> Environment</a>
+    <a href="/technology"><i class="fas fa-microchip"></i> Technology</a>
+    <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+</nav>
+
+<div class="container">
+    <h2><i class="fas fa-bolt"></i> Today’s Top Highlights</h2>
+    <div class="news-grid">
+        {% for item in news %}
+        <div class="news-card">
+            {% if loop.index == 1 %}
+                <div class="badge-featured">Featured</div>
+            {% endif %}
+            <h3><i class="fas fa-newspaper"></i> {{ item[0] }}</h3>
+            <p><i class="fas fa-calendar-alt"></i> {{ item[1] }}</p>
+            <a href="{{ item[2] }}" class="read-btn" target="_blank"><i class="fas fa-arrow-right"></i> Read Full Article</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 GeoPulse. Powered by Remote Sensing & National Insights 🌐
+    <div class="social-links" style="margin-top: 12px;">
+        <a href="https://instagram.com/geopulse" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/geopulse" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="mailto:contact@geopulse.in"><i class="fas fa-envelope"></i></a>
+        <a href="https://linkedin.com/company/geopulse" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://youtube.com/@geopulse" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+</footer>
+
+</body>
+</html>
