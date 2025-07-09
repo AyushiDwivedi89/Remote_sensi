@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add News - GeoPulse Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f8ff;
+        }
+        .container {
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #003366;
+        }
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="file"],
+        input[type="datetime-local"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #003366;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0059b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📝 Add News Article</h2>
+    <form action="/admin/add-news" method="POST" enctype="multipart/form-data">
+        <label for="title">News Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="content">Content/Description</label>
+        <textarea id="content" name="content" required></textarea>
+
+        <label for="publishedAt">Published At</label>
+        <input type="datetime-local" id="publishedAt" name="publishedAt" required>
+
+        <label for="last_date">Last Date</label>
+        <input type="datetime-local" id="last_date" name="last_date">
+
+        <label for="language">File Language</label>
+        <input type="text" id="language" name="language">
+
+        <label for="link">News Source Link / URL</label>
+        <input type="text" id="link" name="link" required>
+
+        <label for="news_file">Upload News File (PDF, DOCX, etc.)</label>
+        <input type="file" id="news_file" name="news_file">
+
+        <label for="file_extension">News File Extension</label>
+        <input type="text" id="file_extension" name="file_extension">
+
+        <label for="video">Upload Related Video</label>
+        <input type="file" id="video" name="video">
+
+        <label for="image">Upload News Image</label>
+        <input type="file" id="image" name="image">
+
+        <button type="submit">📤 Publish News</button>
+    </form>
+</div>
+
+</body>
+</html>

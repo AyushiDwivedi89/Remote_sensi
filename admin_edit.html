@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit News Article - GeoPulse Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-edit text-3xl text-yellow-600"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">Edit News Article</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/admin/manage/{{ news[5] }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to {{ news[5].title() }}
+                    </a>
+                    <a href="/admin/dashboard" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition">
+                        <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-8 sm:px-6 lg:px-8">
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+            <form method="POST" class="space-y-6">
+                <div>
+                    <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Article Title</label>
+                    <input type="text" id="title" name="title" required
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           value="{{ news[1] }}"
+                           placeholder="Enter the article title">
+                </div>
+
+                <div>
+                    <label for="link" class="block text-sm font-medium text-gray-700 mb-2">Article URL</label>
+                    <input type="url" id="link" name="link" required
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           value="{{ news[3] }}"
+                           placeholder="https://example.com/article">
+                </div>
+
+                <div>
+                    <label for="category" class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                    <select id="category" name="category" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="home" {{ 'selected' if news[5] == 'home' else '' }}>Home</option>
+                        <option value="national" {{ 'selected' if news[5] == 'national' else '' }}>National</option>
+                        <option value="international" {{ 'selected' if news[5] == 'international' else '' }}>International</option>
+                        <option value="technology" {{ 'selected' if news[5] == 'technology' else '' }}>Technology</option>
+                        <option value="environmental" {{ 'selected' if news[5] == 'environmental' else '' }}>Environmental</option>
+                        <option value="live" {{ 'selected' if news[5] == 'live' else '' }}>Live</option>
+                        <option value="about" {{ 'selected' if news[5] == 'about' else '' }}>About</option>
+                        <option value="contact" {{ 'selected' if news[5] == 'contact' else '' }}>Contact</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Article Description</label>
+                    <textarea id="description" name="description" rows="4" required
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              placeholder="Enter a brief description of the article">{{ news[4] if news[4] else '' }}</textarea>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-sm font-medium text-gray-700 mb-2">Current Article Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                        <div>
+                            <strong>ID:</strong> {{ news[0] }}
+                        </div>
+                        <div>
+                            <strong>Published:</strong> {{ news[2] }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <a href="/admin/manage/{{ news[5] }}" 
+                       class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg transition">
+                        Cancel
+                    </a>
+                    <button type="submit" 
+                            class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-lg transition">
+                        <i class="fas fa-save mr-2"></i>Update Article
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="text-center py-4 text-gray-500 text-sm mt-8">
+        &copy; 2025 GeoPulse. All Rights Reserved.
+    </footer>
+</body>
+</html>

@@ -32,7 +32,7 @@
         .news-block a:hover { text-decoration: underline; }
         .news-block:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
         .live-news-section { flex: 1 1 28%; background: #003366; padding: 15px; border-radius: 10px; color: #fff; display: flex; flex-direction: column; height: 400px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
-        .live-news-header { background: #d62828; color: #fff; padding: 10px; font-size: 18px; font-weight: bold; border-radius: 4px; text-align: center; margin-bottom: 10px; }
+        .live-news-header { background: #28a5d6; color: #fff; padding: 10px; font-size: 18px; font-weight: bold; border-radius: 4px; text-align: center; margin-bottom: 10px; }
         .live-news-content { flex: 1; overflow: hidden; position: relative; background: #004080; border-radius: 4px; }
         .live-news-list { position: absolute; animation: scrollNews 25s linear infinite; }
         .live-news-item { padding: 10px; border-bottom: 1px solid #002244; font-size: 14px; color: #fff; }
@@ -64,46 +64,12 @@
 <nav>
     <ul>
         <li><a href="#"><i class="fas fa-home" style="color: #ff69b4;"></i> Home</a></li>
-        <li><a href="#"><i class="fas fa-info-circle" style="color: #ff8c00;"></i> About</a></li>
-        <li><a href="#"><i class="fas fa-globe" style="color: #00ced1;"></i> International</a></li>
-        <li><a href="#"><i class="fas fa-flag" style="color: #ffa500;"></i> National</a></li>
-        <li class="dropdown">
-            <a href="#"><i class="fas fa-map" style="color: #9932cc;"></i> States ▾</a>
-            <div class="dropdown-content">
-                <a href="#">Andhra Pradesh</a>
-                <a href="#">Arunachal Pradesh</a>
-                <a href="#">Assam</a>
-                <a href="#">Bihar</a>
-                <a href="#">Chhattisgarh</a>
-                <a href="#">Goa</a>
-                <a href="#">Gujarat</a>
-                <a href="#">Haryana</a>
-                <a href="#">Himachal Pradesh</a>
-                <a href="#">Jharkhand</a>
-                <a href="#">Karnataka</a>
-                <a href="#">Kerala</a>
-                <a href="#">Madhya Pradesh</a>
-                <a href="#">Maharashtra</a>
-                <a href="#">Manipur</a>
-                <a href="#">Meghalaya</a>
-                <a href="#">Mizoram</a>
-                <a href="#">Nagaland</a>
-                <a href="#">Odisha</a>
-                <a href="#">Punjab</a>
-                <a href="#">Rajasthan</a>
-                <a href="#">Sikkim</a>
-                <a href="#">Tamil Nadu</a>
-                <a href="#">Telangana</a>
-                <a href="#">Tripura</a>
-                <a href="#">Uttar Pradesh</a>
-                <a href="#">Uttarakhand</a>
-                <a href="#">West Bengal</a>
-                <a href="#">Delhi</a>
-            </div>
-        </li>
-        <li><a href="#"><i class="fas fa-leaf" style="color: #32cd32;"></i> Environment</a></li>
-        <li><a href="#"><i class="fas fa-microchip" style="color: #1e90ff;"></i> Technology</a></li>
-        <li><a href="#"><i class="fas fa-envelope" style="color: #dc143c;"></i> Contact</a></li>
+        <li><a href="/about"><i class="fas fa-info-circle" style="color: #ff8c00;"></i> About</a></li>
+        <li><a href="/international"><i class="fas fa-globe" style="color: #00ced1;"></i> International</a></li>
+        <li><a href="/national"><i class="fas fa-flag" style="color: #ffa500;"></i> National</a></li>
+        <li><a href="/environment"><i class="fas fa-leaf" style="color: #32cd32;"></i> Environment</a></li>
+        <li><a href="/technology"><i class="fas fa-microchip" style="color: #1e90ff;"></i> Technology</a></li>
+        <li><a href="/contact"><i class="fas fa-envelope" style="color: #dc143c;"></i> Contact</a></li>
     </ul>
 </nav>
 
@@ -144,7 +110,25 @@
 
 <footer>
     &copy; 2025 GeoPulse. All Rights Reserved. Powered by Remote Sensing Technology.
+    <div style="margin-top: 10px;">
+        <a href="https://instagram.com/geopulse" target="_blank" style="color:#e1306c; margin: 0 10px;">
+            <i class="fab fa-instagram fa-lg"></i>
+        </a>
+        <a href="https://twitter.com/geopulse" target="_blank" style="color:#1da1f2; margin: 0 10px;">
+            <i class="fab fa-twitter fa-lg"></i>
+        </a>
+        <a href="mailto:contact@geopulse.in" style="color:#ffffff; margin: 0 10px;">
+            <i class="fas fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://linkedin.com/company/geopulse" target="_blank" style="color:#0077b5; margin: 0 10px;">
+            <i class="fab fa-linkedin fa-lg"></i>
+        </a>
+        <a href="https://youtube.com/@geopulse" target="_blank" style="color:#ff0000; margin: 0 10px;">
+            <i class="fab fa-youtube fa-lg"></i>
+        </a>
+    </div>
 </footer>
+
 
 <div id="allNewsModal" class="modal">
     <div class="modal-content">
@@ -176,4 +160,4 @@ window.onclick = e => { if (e.target == modal) modal.style.display = 'none'; }
 </script>
 
 </body>
-</html>
+</html>  
